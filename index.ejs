@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mark & Clint's Wedding</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="skeleton.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row header">
+        <div class="twelve columns">
+          <h1>MARK</h1>
+          <h5>&horbar;&horbar;&horbar;</h5><h4> and </h4><h5>&horbar;&horbar;&horbar;</h5>
+          <h1>CLINT</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns hello">
+          Hello, loved ones! If you haven't guessed, this is Clint. Mark isn't the web-savvy one of the bunch. I've put together this RSVP system for you. Let me walk you through quickly:<br/>
+          Just put in your name, email, number of guests, and a message to us if you'd like. That message could be, say, allergies or other accommodations you might need. You're our guest, so don't be shy. Mark and I will then get the email.<br />
+          If you're not coming, just fill out zeroes and perhaps send along a note. It's okay if you can't attend. We understand completely.<br />
+          We're getting married at <a href="http://theloftsatprince.com" target="_blank">The Lofts at Prince</a> on May 28th at 2:30. We will have more information on that here, plus plenty of other details you'll want. We will have your email after your RSVP, so don't sweat. We won't leave you hanging!
+        </div>
+      </div>
+      <hr />
+      <div class="form">
+        <h1>RSVP</h1>
+        <form class="rsvp" action="/rsvp" method="POST">
+          <div class="row">
+            <div class="five columns">
+              <label>Name</label>
+              <input class="u-full-width" type="text" placheholder="name" name="name" value='<% if(typeof name !== 'undefined'){%><%= name %> <%}%>'>
+            </div>
+            <div class="five columns">
+              <label>Email</label>
+              <input class="u-full-width" type="text" placheholder="email" name="email" value='<% if(typeof email !== 'undefined'){%><%= email %> <%}%>'>
+            </div>
+            <div class="pams">
+              <input class="u-full-width" type="text" placheholder="company" name="company" >
+            </div>
+            <div class="one column">
+              <label>Adults</label>
+              <select name="adults">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+            </div>
+            <div class="one column">
+              <label>Kids</label>
+              <select name="children">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+              <label>Message</label>
+              <input class="u-full-width" type="text" placheholder="message" name="message" value='<% if(typeof message !== 'undefined'){%><%= message %> <%}%>'>
+            </div>
+            <div class="twelve columns">
+              <input type="submit" name="button" value='RSVP'>
+            </div>
+              <% if(typeof type !== 'undefined') { %>
+                <% if(type == 'error'){ %>
+                  <div class="error">
+                    Message not sent.
+                  </div>
+                <% } if(type == 'empty'){ %>
+                  <div class="error">
+                    Message not sent.
+                    <%= msg %>
+                  </div>
+                <% } if(type == 'success'){ %>
+                  <div class="success">
+                    Awesome! Message sent successfully.
+                  </div>
+                <% }
+              } %>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
